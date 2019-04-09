@@ -12,4 +12,8 @@ public interface NetworkInterface {
     //TODO figure our where the ? after movie and the = sign after api_key is supposed to be insertet
     @GET("discover/movie?api_key=")
     Observable<MovieResponse> getMoviesFromApi(@Query("api_key") String api_key);
+
+    @GET("search/movie?api_key=")
+    Observable<MovieResponse> getMoviesBasedOnQuery(@Query("api_key") String api_key, @Query("query") String q);
+
 }

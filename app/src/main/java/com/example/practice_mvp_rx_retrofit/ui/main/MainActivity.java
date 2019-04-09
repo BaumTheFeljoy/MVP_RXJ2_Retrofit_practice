@@ -29,9 +29,8 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ButterKnife.bind(this); should be ok with viewbyid
 
-        rvMovies = (RecyclerView)findViewById(R.id.rvMovies);
+        rvMovies = findViewById(R.id.rvMovies);
         toolbar = findViewById(R.id.toolbar);
 
         setupMVP();
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
     private void setupViews(){
+//        setSupportActionBar(toolbar);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         int id = item.getItemId();
         if(id == R.id.search){
             showToast("Search Clicked");
-//            Intent i = new Intent(MainActivity.this, SearchActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
