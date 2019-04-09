@@ -1,4 +1,4 @@
-package com.example.practice_mvp_rx_retrofit.ui;
+package com.example.practice_mvp_rx_retrofit.ui.main;
 
 
 import android.util.Log;

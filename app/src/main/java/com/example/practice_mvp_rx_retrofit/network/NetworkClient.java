@@ -24,8 +24,6 @@ public class NetworkClient {
                     .client(okHttpClient)
                     .build();
         }
-
         return retrofit;
-
     }
 }

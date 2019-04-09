@@ -2,63 +2,51 @@ package com.example.practice_mvp_rx_retrofit.adapters;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.practice_mvp_rx_retrofit.R;
 import com.example.practice_mvp_rx_retrofit.models.Result;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesHolder> {
+public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     private String TAG = "Adapter";
-    List<Result> movieList;
-    Context context;
+    List<Result> mResultList;
 
-    public MoviesAdapter(List<Result> movieList, Context context) {
-        this.movieList = movieList;
-        this.context = context;
+    public MoviesAdapter(List<Result> resultList) {
+        this.mResultList = resultList;
     }
 
+    //This gets called only as many times as we have cards in memory
     @Override
-    public MoviesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.row_movies,parent,false);
-        MoviesHolder mh = new MoviesHolder(v);
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_movies,parent,false);
+        MovieViewHolder mh = new MovieViewHolder(v);
         return mh;
     }
 
+    //This gets called all while scrolling to fill the cardviews with the information at the
+    //corresponding position
     @Override
-    public void onBindViewHolder(MoviesHolder holder, int position) {
-
-        holder.tvTitle.setText(movieList.get(position).getTitle());
-        holder.tvOverview.setText(movieList.get(position).getOverview());
-        holder.tvReleaseDate.setText(movieList.get(position).getReleaseDate());
-        Glide.with(context).load("https://image.tmdb.org/t/p/w500/"+movieList.get(position).getPosterPath()).into(holder.ivMovie);
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+        holder.bind(mResultList.get(position));
+        Log.d(TAG, "onBindViewHolder: movie bound at:" + position);
     }
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return mResultList.size();
     }
 
-    public class MoviesHolder extends RecyclerView.ViewHolder {
-
-        TextView tvTitle,tvOverview,tvReleaseDate;
-        ImageView ivMovie;
-
-        public MoviesHolder(View v) {
-            super(v);
-            tvTitle = (TextView) v.findViewById(R.id.tvTitle);
-            tvOverview = (TextView) v.findViewById(R.id.tvOverView);
-            tvReleaseDate = (TextView) v.findViewById(R.id.tvReleaseDate);
-            ivMovie = (ImageView) v.findViewById(R.id.ivMovie);
-        }
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
     }
 }
