@@ -9,7 +9,6 @@ import retrofit2.http.Query;
 
 public interface NetworkInterface {
 
-    //TODO figure our where the ? after movie and the = sign after api_key is supposed to be insertet
     @GET("discover/movie?api_key=")
     Observable<MovieResponse> getMoviesFromApi(@Query("api_key") String api_key);
 

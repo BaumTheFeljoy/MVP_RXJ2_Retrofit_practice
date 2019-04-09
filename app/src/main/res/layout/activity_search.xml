@@ -8,8 +8,8 @@
     android:orientation="vertical"
     tools:context="com.example.practice_mvp_rx_retrofit.ui.search.SearchActivity">
 
-    <include
-        layout="@layout/toolbar" />
+    <!--<include-->
+        <!--layout="@layout/toolbar" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvQueryResult"

@@ -27,7 +27,6 @@ public class SearchPresenter implements SearchPresenterInterface {
         this.searchviewInterface = searchViewInterface;
     }
 
-
     @Override
     public void getResultsBasedOnQuery(SearchView searchView) {
 
@@ -42,7 +41,7 @@ public class SearchPresenter implements SearchPresenterInterface {
                         }
                     }
                 })
-                .debounce(2, TimeUnit.SECONDS)
+                .debounce(500, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .switchMap(new Function<String, ObservableSource<MovieResponse>>() {
                     @Override
@@ -54,8 +53,6 @@ public class SearchPresenter implements SearchPresenterInterface {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(getObserver());
-
-
     }
 
     private Observable<String> getObservableQuery(SearchView searchView){

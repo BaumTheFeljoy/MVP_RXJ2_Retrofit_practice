@@ -19,8 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchActivity extends AppCompatActivity implements SearchViewInterface {
 
-    Toolbar toolbar;
-
     RecyclerView rvQueryResult;
 
     private SearchView searchView;
@@ -32,7 +30,6 @@ public class SearchActivity extends AppCompatActivity implements SearchViewInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        toolbar = findViewById(R.id.toolbar);
         rvQueryResult = findViewById(R.id.rvQueryResult);
 
         setupViews();
@@ -41,7 +38,6 @@ public class SearchActivity extends AppCompatActivity implements SearchViewInter
 
     private void setupViews() {
 
-        //setSupportActionBar(toolbar);
         rvQueryResult.setLayoutManager(new LinearLayoutManager(this));
     }
 
